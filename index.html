@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendar Clock privacy policy</title>
+  <style>
+    body { font-family: Georgia, serif; line-height: 1.5; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.6rem; }
+  </style>
+</head>
+<body>
+  <h1>Calendar Clock privacy policy</h1>
+  <p>This policy describes the Calendar Clock Android app as of 9 November 2026. Support and privacy questions: <a href="mailto:studioequisllc@gmail.com">studioequisllc@gmail.com</a>.</p>
+  <p>Calendar Clock is a home-screen widget and settings app. The developer does not run an account system for it.</p>
+
+  <h2>Calendar</h2>
+  <p>With the calendar permission, the app reads calendars and events from the Android calendar provider on the phone. It uses the calendar name, account name, owner, color, and access level, and the event title, start, end, color, all-day flag, and status. Declined events are skipped. Those values are drawn on the widget and listed in settings. They are not sent to the developer or to the weather services.</p>
+  <p>Tapping an event opens that event in a calendar app on the phone. Tapping a calendar reminder alarm can read the reminder title from the calendar provider so the alarm line can name it. That title stays on the phone.</p>
+  <p>The app asks Android for the names of Google accounts on the device only to pick a default main calendar. The manifest does not declare GET_ACCOUNTS. Those names are not written to the weather cache and are not included in weather requests.</p>
+
+  <h2>Location and weather</h2>
+  <p>Weather is off until it is turned on in settings. The only location permission is approximate location (ACCESS_COARSE_LOCATION). The app does not request fine location.</p>
+  <p>It reads the newest last-known fix from the device location providers. While settings is open on Android 11 or newer, it can also request one current fix from the network provider, or from the fused provider if the network provider is off. The latitude and longitude are stored as floats in the app's private storage, with the time of the fix.</p>
+  <p>When weather is refreshed, the app sends that location to one of these services:</p>
+  <ul>
+    <li>National Weather Service, api.weather.gov, when the point is in National Weather Service coverage or that source is selected. The request formats the coordinates to four decimal places.</li>
+    <li>Open-Meteo, api.open-meteo.com, otherwise, or when the National Weather Service is unavailable and Automatic is selected. The request formats the coordinates to three decimal places.</li>
+  </ul>
+  <p>The formatting is how the URL is built. It is not a claim that the phone returned a GPS fix. With only coarse permission, Android supplies an approximate location. The app also refreshes weather if a new fix differs by more than 0.02 degrees from the previous one. Place-name and National Weather Service grid caches are keyed to a 0.01 degree cell.</p>
+  <p>The National Weather Service response can include a city name. If it does not, the app may call the Android geocoder API (Geocoder.getFromLocation) for a locality and keep that name only when its own check accepts it. That API can send the coordinates to a network geocoding service chosen by the platform. This app does not name that service, and it does not set how long the platform keeps the request. The place name the app accepts is shown on the clock and stored in private app storage until a later lookup replaces it. The forecast, place, and coordinates are also stored in a private file on the phone until a later successful fetch replaces that file.</p>
+  <p>Weather requests to the National Weather Service send a user agent of the form CalendarClockWidget/&lt;version&gt; (github.com/cummingsrob/calendar-clock-widget). They do not include calendar events, account names, or an advertising id.</p>
+
+  <h2>Other data on the phone</h2>
+  <p>Settings, including which calendars are hidden, are stored in the app's private storage. The app reads the next alarm from Android to draw one alarm line, including the package name of the alarm app when Android provides it. That information stays on the phone.</p>
+  <p>The app sets an exact alarm so the widget can redraw at the next minute. The alarm is not a wakeup alarm. If exact alarms are not allowed, it uses a five-second window instead.</p>
+
+  <h2>What this app does not do</h2>
+  <p>The app has no analytics SDK, advertising SDK, or account server. Calendar events are not uploaded. The app does not declare fine location, background location, or an advertising id.</p>
+
+  <h2>How long data stays</h2>
+  <p>The app does not delete weather, location, or settings on a timer. They remain in app-private storage until a newer value replaces them, or until the app's data is cleared or the app is removed. There is no remote copy held by the developer.</p>
+
+  <h2>Contact</h2>
+  <p>Support and privacy questions: <a href="mailto:studioequisllc@gmail.com">studioequisllc@gmail.com</a>.</p>
+</body>
+</html>
